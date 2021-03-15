@@ -19,23 +19,24 @@ def scrape_info():
 
     # Visit NASA news site
     url = 'https://mars.nasa.gov/news/'
-    # browser.visit(url)
+    browser.visit(url)
 
-    time.sleep(5)
+    time.sleep(1)
 
     # Scrape page into Soup
-    html = browser.html
-    soup = bs(html, "html.parser")
-    response = requests.get(url)
-    soup = bs(response.text, 'lxml')
-    # soup = bs(browser.html, 'html.parser')
+    # html = browser.html
+    # soup = bs(html, "html.parser")
+    # response = requests.get(url)
+    # soup = bs(response.text, 'lxml')
+    
+    soup = bs(browser.html, 'html.parser')
 
     # Get the news title 
-    title_results = soup.find_all('div', class_='content_title')[0]
+    title_results = soup.find_all('div', class_='content_title')[1]
     nasa_first_title = title_results.text.strip()
 
     # Get the news description
-    description_results = soup.find_all('div', class_='rollover_description_inner')[0]
+    description_results = soup.find_all('div', class_='article_teaser_body')[0]
     nasa_first_description = description_results.text.strip()
 
     # -----------
@@ -72,7 +73,7 @@ def scrape_info():
     mars_facts = tables[0]
     mars_facts.rename(columns={0:'Description',1:'Mars'}, inplace=True)
     mars_facts.set_index('Description',inplace=True)
-    mars_table_html = mars_facts.to_html()
+    mars_table_html = mars_facts.to_html(classes="table table-stripped")
 
     # -------------
 
