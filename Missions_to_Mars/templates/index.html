@@ -5,22 +5,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Visit the...</h1>
-      <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p>
+      <h1>Mission to Mars</h1>
+      <!-- <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p> -->
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
     </div>
-    <img src="{{ vacation.sloth_img }}" alt="Sloth">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
-  </div>
+    <h2>Latest Mars News</h2>
+    <h3>{{ mars["nasa_news_title"] }}</h3>
+    <p> {{ mars["nasa_news_desc"] }}</p>
+    <div class="col-md-8">
+        <header>
+          <h2>Featured Mars Image</h2>
+        </header>
+        <img src = {{ mars["featured_image"] }} >
+        </section>
+    </div>
+    <div class="col-md-4">
+      <h3>Mars Facts</h3>
+      <div class="table-responsive">
+        <!-- <table class="dataframe table table-striped"> -->
+        {{ mars["mars_facts"]|safe }}
+        <!-- </table> -->
+      </div>
+    </div>
+    <div class="col-md-12 text-center">     
+        <h2>Mars Hemispheres</h2>
+        <!-- <p class="lead">This is placed inside a container</p> -->
+        <hr class="my-4">
+        
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+              <!-- <div class="thumbnail"> -->
+              <img src= {{ mars["hemisphere_urls"][0]["Image URL"] }} alt="Mars" style="width: 400px;height:400px;">
+              <h3>{{ mars["hemisphere_urls"][0]["Hemisphere Image"] }} </h3>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <!-- <div class="thumbnail"> -->
+            <img src= {{ mars["hemisphere_urls"][1]["Image URL"] }} alt="Mars" style="width: 400px;height:400px;">
+            <h3>{{ mars["hemisphere_urls"][1]["Hemisphere Image"] }} </h3>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <!-- <div class="thumbnail"> -->
+            <img src= {{ mars["hemisphere_urls"][2]["Image URL"] }} alt="Mars" style="width: 400px;height:400px;">
+            <h3>{{ mars["hemisphere_urls"][2]["Hemisphere Image"] }} </h3>
+          </div>
+            
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <!-- <div class="thumbnail"> -->
+            <img src= {{ mars["hemisphere_urls"][3]["Image URL"] }} alt="Mars" style="width: 400px;height:400px;">
+            <h3>{{ mars["hemisphere_urls"][3]["Hemisphere Image"] }} </h3>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+      
+
+
+    </div>
+
+
+      
+
   </div>
 </body>
 
